@@ -57,21 +57,22 @@ const MfDetails = () => {
   }
 
   return (
-    <div className="container flex flex-col max-w-6xl justify-start mt-6">
-      <button
-        onClick={backBtn}
-        className="max-w-36 border border-gray-400 py-2 rounded-md px-4"
-      >
+    <div className="container flex flex-col max-w-6xl mt-6">
+      <button onClick={backBtn} className="max-w-36 bg-transparent px-4">
         <FontAwesomeIcon icon={faChevronLeft} color="white" className="pr-2" />
         Go back
       </button>
-      <div className="flex flex-col space-y-4 mt-4 items-start">
-        <p>Fund house : {mfData.meta.fund_house} </p>
-        <p>Scheme type : {mfData.meta.scheme_type} </p>
-        <p>Scheme category : {mfData.meta.scheme_category} </p>
-        <p>Scheme code : {mfData.meta.scheme_code} </p>
-        <p>Scheme name : {mfData.meta.scheme_name} </p>
-        <NavDateChart chartData={mfData.data} />
+      <div className="flex w-full mt-6 space-x-8">
+        <div className="flex flex-col space-y-4 items-start text-left w-1/3 bg-slate-800 rounded-md p-6 shadow-md">
+          <p>Fund house : {mfData.meta.fund_house} </p>
+          <p>Scheme type : {mfData.meta.scheme_type} </p>
+          <p>Scheme category : {mfData.meta.scheme_category} </p>
+          <p>Scheme code : {mfData.meta.scheme_code} </p>
+          <p>Scheme name : {mfData.meta.scheme_name} </p>
+        </div>
+        <div className="w-2/3">
+          <NavDateChart chartData={mfData.data} />
+        </div>
       </div>
     </div>
   );

@@ -12,9 +12,6 @@ const MfTable = ({ data }) => {
         <thead className="text-sm text-gray-300 uppercase bg-gray-800 border-gray-700">
           <tr>
             <th scope="col" className="px-6 py-3">
-              <p>Serial</p>
-            </th>
-            <th scope="col" className="px-6 py-3">
               <p>Mutual Fund</p>
             </th>
           </tr>
@@ -26,13 +23,6 @@ const MfTable = ({ data }) => {
               key={index}
               onClick={() => navigateToDetails(mf.schemeCode)}
             >
-              <th
-                scope="row"
-                className="flex items-center px-6 py-4 font-medium whitespace-nowrap"
-              >
-                <p>{index + 1}</p>
-              </th>
-
               <td className="px-6 py-4">{mf.schemeName}</td>
             </tr>
           ))}

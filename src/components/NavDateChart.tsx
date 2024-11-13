@@ -56,7 +56,7 @@ const NavDateChart = ({ chartData }) => {
   };
 
   return (
-    <div className="w-3/5">
+    <div>
       <Line data={data} options={options} />
     </div>
   );

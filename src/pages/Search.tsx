@@ -55,15 +55,12 @@ const Search = () => {
 
       {results.length > 0 && (
         <div>
-          <h2 className="text-lg font-semibold mb-2">Results:</h2>
+          <h2 className="text-lg font-semibold mb-2">Results for : {query}</h2>
 
           <div className="relative overflow-x-auto rounded-md">
             <table className="w-full text-left border-gray-700">
               <thead className="text-sm text-gray-300 uppercase bg-gray-800 border-gray-700">
                 <tr>
-                  <th scope="col" className="px-6 py-3">
-                    <p>Serial</p>
-                  </th>
                   <th scope="col" className="px-6 py-3">
                     <p>Mutual Fund</p>
                   </th>
@@ -76,13 +73,6 @@ const Search = () => {
                     key={index}
                     onClick={() => navigateToDetails(result.schemeCode)}
                   >
-                    <th
-                      scope="row"
-                      className="flex items-center px-6 py-4 font-medium whitespace-nowrap"
-                    >
-                      <p>{index + 1}</p>
-                    </th>
-
                     <td className="px-6 py-4">{result.schemeName}</td>
                   </tr>
                 ))}
