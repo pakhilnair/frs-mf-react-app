@@ -58,35 +58,37 @@ const MfDetails = () => {
 
   return (
     <div className="container flex flex-col mt-6">
-      <button onClick={backBtn} className="max-w-36 bg-transparent px-4">
+      <button onClick={backBtn} className="max-w-36 bg-transparent text-left">
         <FontAwesomeIcon icon={faChevronLeft} color="white" className="pr-2" />
         Go back
       </button>
-      <div className="flex flex-col w-full mt-6 md:space-x-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 space-4 items-start text-left rounded-md ">
+      <div className="flex flex-col justify-between md:flex-row w-full mt-8 md:space-x-8 space-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-2 text-left rounded-md md:w-1/3 overflow-auto">
           <Card>
             <p className="text-sm text-gray-400">Fund house : </p>
-            <p>{mfData.meta.fund_house} </p>
+            <p className="text-sm font-bold">{mfData.meta.fund_house} </p>
           </Card>
           <Card>
             <p className="text-sm text-gray-400">Scheme type : </p>
-            <p>{mfData.meta.scheme_type} </p>
+            <p className="text-sm font-bold">{mfData.meta.scheme_type} </p>
           </Card>
           <Card>
             <p className="text-sm text-gray-400">Scheme category : </p>
-            <p>{mfData.meta.scheme_category} </p>
+            <p className="text-sm font-bold">{mfData.meta.scheme_category} </p>
           </Card>
           <Card>
             <p className="text-sm text-gray-400">Scheme code : </p>
-            <p>{mfData.meta.scheme_code} </p>
-          </Card>{" "}
-          <Card>
-            <p className="text-sm text-gray-400">Scheme name :</p>
-            <p>{mfData.meta.scheme_name} </p>
+            <p className="text-sm font-bold">{mfData.meta.scheme_code} </p>
           </Card>
+          <div className="col-span-2 md:col-span-1">
+            <Card>
+              <p className="text-sm text-gray-400">Scheme name :</p>
+              <p className="text-sm font-bold">{mfData.meta.scheme_name} </p>
+            </Card>
+          </div>
         </div>
 
-        <div className="max-w-full">
+        <div className="md:w-full">
           <NavDateChart chartData={mfData.data} />
         </div>
       </div>

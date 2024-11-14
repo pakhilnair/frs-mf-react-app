@@ -2,7 +2,7 @@ const Card = ({ children }) => {
   return (
     <div
       className={
-        "h-fit md:min-h-32 p-4 mx-2 mb-4 mt-1 bg-gray-800 bg-opacity-60 rounded-md overflow-y-auto"
+        "md:w-64 md:h-fit space-y-1 p-4 bg-gray-800 bg-opacity-60 rounded-md overflow-auto"
       }
     >
       {children}
