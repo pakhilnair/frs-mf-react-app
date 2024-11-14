@@ -1,6 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Table = ({ data }) => {
+  const rowsPerPage = 20;
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentPageData = data.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+
+  const handlePreviousPage = () => {
+    setCurrentPage((current) => current - 1);
+  };
+  const handleNextPage = () => {
+    setCurrentPage((current) => current + 1);
+  };
+
   const navigate = useNavigate();
   const navigateToDetails = (schemeCode: number) => {
     console.log(schemeCode);
@@ -18,7 +34,7 @@ const Table = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((mf, index) => (
+          {currentPageData.map((mf, index) => (
             <tr
               className="border-t dark:border-gray-700 text-sm cursor-pointer hover:shadow-md hover:border-b"
               key={index}
@@ -29,6 +45,26 @@ const Table = ({ data }) => {
           ))}
         </tbody>
       </table>
+
+      <div className="flex justify-between mt-4">
+        <button
+          disabled={currentPage === 1}
+          onClick={handlePreviousPage}
+          className="px-4 py-2 bg-gray-700 text-white disabled:opacity-50"
+        >
+          Previous
+        </button>{" "}
+        <span className="text-gray-300">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={handleNextPage}
+          className="px-4 py-2 bg-gray-700 text-white disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
