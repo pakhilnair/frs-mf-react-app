@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
+import Table from "../components/Table";
 
 const Search = () => {
   const { query } = useParams();
@@ -11,10 +12,6 @@ const Search = () => {
   const navigate = useNavigate();
   const backBtn = () => {
     navigate(-1);
-  };
-  const navigateToDetails = (schemeCode: number) => {
-    console.log(schemeCode);
-    navigate(`/mf/${schemeCode}`);
   };
 
   useEffect(() => {
@@ -53,33 +50,13 @@ const Search = () => {
       </button>
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      {results.length > 0 && (
+      {results.length > 0 ? (
         <div>
           <h2 className="text-lg font-semibold mb-2">Results for : {query}</h2>
-
-          <div className="relative overflow-x-auto rounded-md">
-            <table className="w-full text-left border-gray-700">
-              <thead className="text-sm text-gray-300 uppercase bg-gray-800 border-gray-700">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    <p>Mutual Fund</p>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {results.map((result, index) => (
-                  <tr
-                    className="border-t dark:border-gray-700 text-sm cursor-pointer"
-                    key={index}
-                    onClick={() => navigateToDetails(result.schemeCode)}
-                  >
-                    <td className="px-6 py-4">{result.schemeName}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Table data={results} />
         </div>
+      ) : (
+        "No results "
       )}
     </div>
   );
