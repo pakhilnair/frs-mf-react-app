@@ -1,17 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useState, FC } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-interface mfType {
+interface TableDataItem {
   schemeCode: number;
   schemeName: string;
 }
 
-const Table: FC = ({ data }) => {
+interface TableData {
+  data: TableDataItem[];
+}
+
+const Table = ({ data }: TableData) => {
   const rowsPerPage = 40;
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -44,7 +48,7 @@ const Table: FC = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {currentPageData.map((mf: mfType, index: number) => (
+          {currentPageData.map((mf: TableDataItem, index: number) => (
             <tr
               className="flex justify-between items-center border-b border-x rounded-sm dark:border-gray-700 text-sm cursor-pointer hover:shadow-md hover:bg-gray-900 hover:shadow-zinc-800/80 hover:border-indigo-900"
               key={index}

@@ -18,7 +18,16 @@ ChartJS.register(
 );
 import { Line } from "react-chartjs-2";
 
-const NavDateChart = ({ chartData }) => {
+interface ChartDataItem {
+  date: string;
+  nav: string;
+}
+
+interface ChartData {
+  chartData: ChartDataItem[];
+}
+
+const NavDateChart = ({ chartData }: ChartData) => {
   const dates = chartData
     .slice(-20)
     .map((item) => item.date)

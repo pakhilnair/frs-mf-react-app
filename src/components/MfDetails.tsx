@@ -12,7 +12,7 @@ const MfDetails = () => {
     navigate(-1);
   };
 
-  const [mfData, setMfData] = useState(null);
+  const [mfData, setMfData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
