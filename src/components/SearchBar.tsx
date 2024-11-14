@@ -14,7 +14,7 @@ export default function SearchBar() {
     navigateToSearch(query);
   };
   return (
-    <div className="mx-auto mt-8 p-4">
+    <div className="mx-auto mt-8 p-4 w-full md:w-4/6">
       <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
         <input
           type="text"

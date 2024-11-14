@@ -1,4 +1,3 @@
-// import React from "react";
 import { useState, useEffect } from "react";
 import MfTable from "../components/MfTable";
 import SearchBar from "../components/SearchBar";
@@ -22,7 +21,7 @@ const Home = () => {
           setAllData(json);
           setLoading(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         if (isMounted) {
           setError(error.message);
           setLoading(false);

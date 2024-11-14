@@ -19,8 +19,11 @@ ChartJS.register(
 import { Line } from "react-chartjs-2";
 
 const NavDateChart = ({ chartData }) => {
-  const dates = chartData.map((item) => item.date);
-  const navs = chartData.map((item) => item.nav);
+  const dates = chartData
+    .slice(-20)
+    .map((item) => item.date)
+    .reverse();
+  const navs = chartData.slice(-20).map((item) => item.nav);
 
   const data = {
     labels: dates,
@@ -55,11 +58,7 @@ const NavDateChart = ({ chartData }) => {
     },
   };
 
-  return (
-    <div>
-      <Line data={data} options={options} />
-    </div>
-  );
+  return <Line data={data} options={options} />;
 };
 
 export default NavDateChart;

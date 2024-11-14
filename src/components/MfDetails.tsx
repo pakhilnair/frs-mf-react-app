@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import NavDateChart from "./NavDateChart";
 import { useState, useEffect } from "react";
+import Card from "./Card";
 const MfDetails = () => {
   const { schemeCode } = useParams();
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const MfDetails = () => {
         if (isMounted) {
           setMfData(json);
           setLoading(false);
-          console.log(mfData);
         }
       } catch (error) {
         if (isMounted) {
@@ -40,7 +40,7 @@ const MfDetails = () => {
     return () => {
       isMounted = false;
     };
-  }, [schemeCode]);
+  }, []);
 
   if (loading) {
     return (
@@ -57,20 +57,36 @@ const MfDetails = () => {
   }
 
   return (
-    <div className="container flex flex-col max-w-6xl mt-6">
+    <div className="container flex flex-col mt-6">
       <button onClick={backBtn} className="max-w-36 bg-transparent px-4">
         <FontAwesomeIcon icon={faChevronLeft} color="white" className="pr-2" />
         Go back
       </button>
-      <div className="flex w-full mt-6 space-x-8">
-        <div className="flex flex-col space-y-4 items-start text-left w-1/3 bg-slate-800 rounded-md p-6 shadow-md">
-          <p>Fund house : {mfData.meta.fund_house} </p>
-          <p>Scheme type : {mfData.meta.scheme_type} </p>
-          <p>Scheme category : {mfData.meta.scheme_category} </p>
-          <p>Scheme code : {mfData.meta.scheme_code} </p>
-          <p>Scheme name : {mfData.meta.scheme_name} </p>
+      <div className="flex flex-col w-full mt-6 md:space-x-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 space-4 items-start text-left rounded-md ">
+          <Card>
+            <p className="text-sm text-gray-400">Fund house : </p>
+            <p>{mfData.meta.fund_house} </p>
+          </Card>
+          <Card>
+            <p className="text-sm text-gray-400">Scheme type : </p>
+            <p>{mfData.meta.scheme_type} </p>
+          </Card>
+          <Card>
+            <p className="text-sm text-gray-400">Scheme category : </p>
+            <p>{mfData.meta.scheme_category} </p>
+          </Card>
+          <Card>
+            <p className="text-sm text-gray-400">Scheme code : </p>
+            <p>{mfData.meta.scheme_code} </p>
+          </Card>{" "}
+          <Card>
+            <p className="text-sm text-gray-400">Scheme name :</p>
+            <p>{mfData.meta.scheme_name} </p>
+          </Card>
         </div>
-        <div className="w-2/3">
+
+        <div className="max-w-full">
           <NavDateChart chartData={mfData.data} />
         </div>
       </div>

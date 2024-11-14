@@ -37,14 +37,11 @@ const Search = () => {
       }
     };
     fetchData();
-  }, [query]);
+  }, []);
 
   return (
-    <div className="container flex flex-col justify-start">
-      <button
-        onClick={backBtn}
-        className="max-w-36 mb-6 border border-gray-400 py-2 rounded-md px-4"
-      >
+    <div className="container flex flex-col justify-start mt-6">
+      <button onClick={backBtn} className="max-w-36 bg-transparent px-4">
         <FontAwesomeIcon icon={faChevronLeft} color="white" className="pr-2" />
         Go back
       </button>
