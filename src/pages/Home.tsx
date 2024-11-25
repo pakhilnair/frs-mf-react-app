@@ -3,10 +3,14 @@ import MfTable from "../components/MfTable";
 import SearchBar from "../components/SearchBar";
 
 const Home = () => {
-  //All MF data table
-  const [allData, setAllData] = useState(null);
+  type AllMfData = {
+    schemeCode: number;
+    schemeName: string;
+  };
+
+  const [allData, setAllData] = useState<AllMfData[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null | unknown>(null);
 
   useEffect(() => {
     let isMounted: boolean = true;
@@ -21,9 +25,9 @@ const Home = () => {
           setAllData(json);
           setLoading(false);
         }
-      } catch (error: any) {
+      } catch (error) {
         if (isMounted) {
-          setError(error.message);
+          setError(error);
           setLoading(false);
         }
       }
@@ -34,7 +38,7 @@ const Home = () => {
     };
   }, []);
 
-  if (loading) {
+  if (loading || !allData) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -44,9 +48,12 @@ const Home = () => {
 
   if (error) {
     return (
-      <div className="text-red-500 p-4 bg-red-100 rounded">Error: {error}</div>
+      <div className="text-red-500 p-4 bg-red-100 rounded">
+        Error: {String(error)}
+      </div>
     );
   }
+
   return (
     <div>
       <SearchBar />

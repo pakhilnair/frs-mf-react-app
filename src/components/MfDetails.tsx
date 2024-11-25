@@ -5,6 +5,21 @@ import NavDateChart from "./NavDateChart";
 import { useState, useEffect } from "react";
 import Card from "./Card";
 const MfDetails = () => {
+  interface MfDataType {
+    meta: {
+      fund_house: string;
+      scheme_type: string;
+      scheme_category: string;
+      scheme_code: number;
+      scheme_name: string;
+    };
+    data: {
+      date: string;
+      nav: string;
+    }[];
+    status: string;
+  }
+
   const { schemeCode } = useParams();
   const navigate = useNavigate();
 
@@ -12,9 +27,9 @@ const MfDetails = () => {
     navigate(-1);
   };
 
-  const [mfData, setMfData] = useState();
+  const [mfData, setMfData] = useState<MfDataType | null>();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null | unknown>(null);
 
   useEffect(() => {
     let isMounted: boolean = true;
@@ -24,7 +39,7 @@ const MfDetails = () => {
         if (!response.ok) {
           throw new Error("Api fetch failed");
         }
-        const json = await response.json();
+        const json: MfDataType = await response.json();
         if (isMounted) {
           setMfData(json);
           setLoading(false);
@@ -40,9 +55,9 @@ const MfDetails = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [schemeCode]);
 
-  if (loading) {
+  if (loading || !mfData) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -52,7 +67,9 @@ const MfDetails = () => {
 
   if (error) {
     return (
-      <div className="text-red-500 p-4 bg-red-100 rounded">Error: {error}</div>
+      <div className="text-red-500 p-4 bg-red-100 rounded">
+        Error: {String(error)}
+      </div>
     );
   }
 

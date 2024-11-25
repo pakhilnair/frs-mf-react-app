@@ -1,6 +1,14 @@
 import Table from "./Table";
+interface TableDataItem {
+  schemeCode: number;
+  schemeName: string;
+}
 
-const MfTable = ({ data }) => {
+interface TableData {
+  data: TableDataItem[];
+}
+
+const MfTable = ({ data }: TableData) => {
   return <Table data={data} />;
 };
 
