@@ -33,7 +33,6 @@ const Table = ({ data }: TableData) => {
 
   const navigate = useNavigate();
   const navigateToDetails = (schemeCode: number) => {
-    console.log(schemeCode);
     navigate(`/mf/${schemeCode}`);
   };
 

@@ -12,7 +12,8 @@ interface MfState {
 
 interface LoadingStore {
   isLoading: boolean;
-  toggleLoading: () => void;
+  startLoading: () => void;
+  stopLoading: () => void;
 }
 
 export const useMfStore = create<MfState>((set) => ({
@@ -34,7 +35,10 @@ export const useMfStore = create<MfState>((set) => ({
 
 export const useLoadingStore = create<LoadingStore>((set) => ({
   isLoading: false,
-  toggleLoading: () => {
-    set((state) => ({ isLoading: !state.isLoading }));
+  startLoading: () => {
+    set(() => ({ isLoading: true }));
+  },
+  stopLoading: () => {
+    set(() => ({ isLoading: false }));
   },
 }));
