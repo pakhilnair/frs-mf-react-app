@@ -28,7 +28,6 @@ const Search = () => {
 
         const data = await response.json();
         setResults(data);
-        console.log(results);
       } catch (error) {
         setError("An error occurred while fetching results. Please try again.");
         console.error(error);
